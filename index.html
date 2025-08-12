@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YGH & VN AGRIC (CAMBODIA) CO., LTD.</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for a modern, clean look */
+        :root {
+            --primary-color: #007bff;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+        
+        /* Navigation Bar */
+        .navbar-brand img {
+            height: 50px;
+        }
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .navbar-dark .navbar-nav .nav-link:hover {
+            color: white;
+        }
+        .bg-dark {
+            background-color: var(--dark-color) !important;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('p1.jpg') no-repeat center center/cover;
+            height: 80vh; /* Increased height for better impact */
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+        .hero-section h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero-section p {
+            font-weight: 400;
+            font-size: 1.25rem;
+        }
+        .hero-section .btn {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .hero-section .btn:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
+        /* Product Cards */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 1.5rem; /* More rounded corners */
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+        .product-card img {
+            height: 250px; /* Adjusted image height */
+            object-fit: cover;
+            width: 100%;
+        }
+        .product-card .card-body {
+            padding: 1.5rem;
+        }
+        .product-card .card-title {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        /* Gallery */
+        .gallery-item {
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Contact Section */
+        .contact-info-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+        }
+        .contact-info-icon:hover {
+            color: var(--dark-color);
+        }
+        .qr-code {
+            max-width: 250px;
+            border: 5px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .social-icons-list {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center; /* Centered icons for better layout on all devices */
+            padding-left: 0;
+            list-style: none;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            padding: 2rem 0;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 60vh;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            .hero-section p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container-fluid container">
+            <a class="navbar-brand" href="#">
+                <img src="p7.jpg" alt="YGH Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section d-flex align-items-center">
+            <div class="container">
+                <h1 class="display-4 fw-bold">Freshness from our farm to your home</h1>
+                <p class="lead mt-3">High-quality fruits and agricultural products from Cambodia.</p>
+                <a href="#products" class="btn btn-success btn-lg mt-4">Explore Our Products <i class="bi bi-arrow-right-circle-fill"></i></a>
+            </div>
+        </section>
+
+        <!-- Products Section -->
+        <section id="products" class="py-5">
+            <div class="container">
+                <h2 class="text-center mb-5 display-5 fw-bold">Our Products</h2>
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="p1.jpg" class="card-img-top" alt="Dried Longan Pulp">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp</h5>
+                                <p class="card-text text-muted">Enjoy the sweet and chewy taste of our naturally dried longan pulp.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="p2.jpg" class="card-img-top" alt="Fresh Longan Meat">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat</h5>
+                                <p class="card-text text-muted">The delicious and juicy meat of our fresh longan, perfect for snacks or desserts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="p4.jpg" class="card-img-top" alt="Longan Fruit">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">ផ្លែមៀន 龙眼果 Longan</h5>
+                                <p class="card-text text-muted">Harvested at peak ripeness, our longan fruit is known for its sweet and aromatic flavor.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card product-card h-100">
+                            <img src="p6.jpg" class="card-img-top" alt="Durian Fruit">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">ផ្លែធុរេន Durian fruit 榴莲</h5>
+                                <p class="card-text text-muted">Experience the unique and rich flavor of the "King of Fruits" from our farms.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-12 text-center mb-4">
+                        <h3 class="fw-bold">Our Farm Gallery</h3>
+                    </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="p3.jpg" alt="Packed Longan" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="p2.jpg" alt="Peeled Longan" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="p4.jpg" alt="Longan on tree" class="img-fluid rounded shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-5 bg-white">
+            <div class="container text-center">
+                <h2 class="display-5 fw-bold mb-4">About Us</h2>
+                <div class="mx-auto" style="max-width: 800px;">
+                    <img src="p3.jpg" alt="Company Banner" class="img-fluid rounded shadow-sm mb-4">
+                    <p class="lead">YGH & VN AGRIC (CAMBODIA) CO., LTD. is dedicated to providing the freshest and highest quality fruits from our Cambodian farms to customers around the world.</p>
+                    <p>Our commitment to sustainable farming practices ensures that every product is not only delicious but also grown with care for the environment. We specialize in longan and durian, bringing the unique and vibrant flavors of our region to your table.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 bg-light">
+            <div class="container">
+                <h2 class="text-center mb-5 display-5 fw-bold">Contact Us</h2>
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start">
+                        <ul class="list-unstyled">
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-telephone-fill contact-info-icon me-3"></i>
+                                <p class="mb-0"><strong>Phone:</strong> +855 96 338 8839</p>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-envelope-fill contact-info-icon me-3"></i>
+                                <p class="mb-0"><strong>Email:</strong> yutpin2020@gmail.com</p>
+                            </li>
+                            <li class="social-icons-list mb-3">
+                                <a href="https://t.me/yutpin" target="_blank" class="text-decoration-none text-dark">
+                                    <i class="bi bi-telegram contact-info-icon"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/1FcYp5tKwG/" target="_blank" class="text-decoration-none text-dark">
+                                    <i class="bi bi-facebook contact-info-icon"></i>
+                                </a>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class="bi bi-geo-alt-fill contact-info-icon me-3"></i>
+                                <p class="mb-0"><strong>Address:</strong> Suon Ampov Lech Village, Sangkat Pailin, Pailin City, Pailin Province, Cambodia</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <h3 class="fw-bold mb-3">Payment via ABA</h3>
+                        <img src="aba2.jpg" alt="ABA QR Code" class="img-fluid qr-code">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 footer">
+        <div class="container">
+            <p class="mb-0">&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
