@@ -8,208 +8,544 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Inter + Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Custom styles for a modern, clean look */
         :root {
-            --primary-color: #007bff;
-            --secondary-color: #2277c2;
-            --dark-color: #3a3e43;
-            --light-color: #608d86;
-            --success-color: #3cb057;
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #00f2fe;
+            --dark-color: #2c3e50;
+            --light-color: #f8fafc;
+            --text-dark: #2d3748;
+            --text-light: #718096;
+            --shadow: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
         }
-
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--light-color);
-            color: var(--dark-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
-        /* Navigation Bar */
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
         .navbar-brand img {
-            height: 50px;
-        }
-        .navbar-dark .navbar-nav .nav-link {
-            color: rgba(244, 240, 240, 0.8);
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        .navbar-dark .navbar-nav .nav-link:hover {
-            color: rgba(210, 206, 206, 0.604);
-        }
-        .bg-dark {
-            background-color: dark;
-        }
-
-        /* Hero Section */
-        .hero-section {
-            background: linear-gradient(rgba(170, 92, 92, 0.6), rgba(0, 0, 0, 0.6)), url('p11.jpg') no-repeat center center/cover;
-            height: 80vh;
-            color: rgb(248, 236, 236);
-            display: flex;
-            align-items: center;
-            text-align: center;
-            border-bottom-left-radius: 20px;
-            border-bottom-right-radius: 20px;
-        }
-        .hero-section h1 {
-            font-weight: 700;
-            font-size: 3rem;
-            text-shadow: 2px 2px 4px rgba(129, 74, 74, 0.5);
-        }
-        .hero-section p {
-            font-weight: 400;
-            font-size: 1.25rem;
-        }
-        .hero-section .btn {
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .hero-section .btn:hover {
-            background-color: #35bf53;
-            transform: translateY(-2px);
-        }
-
-        /* Product Cards */
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            border: none;
-            box-shadow: 0 4px 15px rgba(111, 45, 45, 0.1);
-        }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-        }
-        .product-card img {
-            height: 250px;
-            object-fit: cover;
-            width: 100%;
-        }
-        .product-card .card-body {
-            padding: 1.5rem;
-        }
-        .product-card .card-title {
-            font-weight: 700;
-            color: dark;
-        }
-        
-        .order-button {
-            background-color: var(--success-color);
-            border-color: var(--success-color);
-            color: white;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            border-radius: 5px;
-            padding: 10px 20px;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .order-button:hover {
-            background-color: #35bf53;
-            transform: translateY(-2px);
-            color: white;
-        }
-
-        /* Gallery */
-        .gallery-item {
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        /* Testimonials Section */
-        .testimonial-card {
-            background-color: #fff;
-            border-radius: 1rem;
-            padding: 2rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            height: 55px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
             transition: transform 0.3s ease;
         }
-        .testimonial-card:hover {
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+        .navbar-nav .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 600;
+            margin: 0 8px;
+            padding: 12px 20px !important;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .navbar-nav .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        .navbar-nav .nav-link:hover::before,
+        .navbar-nav .nav-link.active::before {
+            left: 0;
+        }
+        .navbar-nav .nav-link:hover,
+        .navbar-nav .nav-link.active {
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), url('p11.jpg') center/cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 70%, rgba(255,255,255,0.1) 0%, transparent 50%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+        .hero-section h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            color: white;
+            text-shadow: 2px 2px 20px rgba(0,0,0,0.3);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        .hero-section p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 2.5rem;
+            text-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+        }
+        .hero-btn {
+            background: var(--success-gradient);
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-btn:hover {
             transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0,242,254,0.4);
+            color: white;
+        }
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        .hero-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .particle:nth-child(1) { width: 20px; height: 20px; top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { width: 15px; height: 15px; top: 60%; left: 20%; animation-delay: 1s; }
+        .particle:nth-child(3) { width: 25px; height: 25px; top: 30%; right: 15%; animation-delay: 2s; }
+        .particle:nth-child(4) { width: 18px; height: 18px; bottom: 20%; right: 20%; animation-delay: 3s; }
+        /* Section Styling */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--success-gradient);
+            border-radius: 2px;
+        }
+        /* Product Cards */
+        .product-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 0;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            overflow: hidden;
+            position: relative;
+            height: 100%;
+        }
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        .product-card:hover {
+            transform: translateY(-15px) rotate(2deg);
+            box-shadow: var(--shadow-lg);
+        }
+        .product-card:hover::before {
+            opacity: 0.05;
+        }
+        .product-card img {
+            height: 280px;
+            object-fit: cover;
+            width: 100%;
+            border-radius: 25px 25px 0 0;
+            transition: transform 0.4s ease;
+        }
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+        .product-card .card-body {
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        .product-card .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .order-button {
+            background: var(--success-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        .order-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.3s ease;
+        }
+        .order-button:hover::before {
+            width: 200px;
+            height: 200px;
+        }
+        .order-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,242,254,0.4);
+            color: white;
+        }
+        /* Gallery */
+        .gallery-item {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: var(--shadow-lg);
+        }
+        .gallery-item:hover::after {
+            opacity: 0.2;
+        }
+        .gallery-item img {
+            transition: transform 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            position: relative;
+        }
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="20" cy="20" r="1" fill="%23667eea" opacity="0.1"/><circle cx="80" cy="40" r="1" fill="%23764ba2" opacity="0.1"/><circle cx="40" cy="80" r="1" fill="%2300f2fe" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.5;
+        }
+        .about-content {
+            position: relative;
+            z-index: 1;
+        }
+        .about-image {
+            border-radius: 25px;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+        .about-image:hover {
+            transform: scale(1.05);
+        }
+        /* Testimonials */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 8rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            font-family: 'Poppins', sans-serif;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
         }
         .testimonial-card p {
             font-style: italic;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
         }
         .testimonial-card footer {
-            font-weight: bold;
+            font-weight: 700;
             color: var(--primary-color);
+            font-size: 1rem;
+            position: relative;
+            z-index: 1;
         }
-
         /* Contact Section */
+        .contact-section {
+            background: var(--dark-gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="contact-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23contact-pattern)"/></svg>');
+        }
+        .contact-content {
+            position: relative;
+            z-index: 1;
+        }
         .contact-info-icon {
             font-size: 2.5rem;
-            color: var(--primary-color);
-            transition: color 0.3s ease;
+            color: var(--success-color);
+            transition: all 0.3s ease;
         }
         .contact-info-icon:hover {
-            color: var(--dark-color);
+            color: white;
+            transform: scale(1.2);
+            animation: pulse 1s ease-in-out;
         }
         .qr-code {
-            max-width: 250px;
-            border: 5px solid var(--primary-color);
-            border-radius: 15px;
-            padding: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 280px;
+            border: 5px solid var(--success-color);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 10px 30px rgba(0,242,254,0.3);
+            transition: transform 0.3s ease;
+        }
+        .qr-code:hover {
+            transform: scale(1.05);
         }
         .social-icons-list {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
             padding-left: 0;
             list-style: none;
         }
-        .language-selector-dropdown {
-            margin-right: 15px;
+        .social-icons-list a {
+            transition: all 0.3s ease;
         }
-        
+        .social-icons-list a:hover {
+            transform: translateY(-5px);
+        }
+        /* Language Dropdown */
+        .language-dropdown .btn {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: var(--text-dark);
+            font-weight: 600;
+            border-radius: 25px;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .language-dropdown .btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+            transform: translateY(-2px);
+        }
         /* Footer */
         .footer {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-            padding: 2rem 0;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            color: rgba(255,255,255,0.8);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero-section {
-                height: 60vh;
+                min-height: 70vh;
+                padding: 2rem 0;
             }
+            
             .hero-section h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
+            
             .hero-section p {
-                font-size: 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .product-card:hover {
+                transform: translateY(-10px);
             }
         }
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .fade-in:nth-child(1) { animation-delay: 0.1s; }
+        .fade-in:nth-child(2) { animation-delay: 0.2s; }
+        .fade-in:nth-child(3) { animation-delay: 0.3s; }
+        .fade-in:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
-
     <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid container">
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="p7.jpg" alt="YGH Logo">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home" data-i18n="nav-home">ទំព័រដើម</a>
+                        <a class="nav-link active" href="#home" data-i18n="nav-home">ទំព័រដើម</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#products" data-i18n="nav-products">ផលិតផល</a>
@@ -227,12 +563,11 @@
                         <a class="nav-link" href="catalog.pdf" download data-i18n="nav-catalog">ទាញយក Catalog</a>
                     </li>
                 </ul>
-                <!-- Language Selector Dropdown -->
-                <div class="dropdown language-selector-dropdown">
-                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="language-dropdown">
+                <div class="dropdown language-dropdown ms-3">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" id="language-dropdown-button">
                         ភាសា
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="language-dropdown">
+                    </button>
+                    <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
                         <li><a class="dropdown-item" href="#" data-lang="km">ភាសាខ្មែរ</a></li>
                         <li><a class="dropdown-item" href="#" data-lang="zh">中文</a></li>
@@ -241,23 +576,34 @@
             </div>
         </div>
     </nav>
-
     <main>
         <!-- Hero Section -->
-        <section id="home" class="hero-section d-flex align-items-center">
+        <section id="home" class="hero-section">
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
             <div class="container">
-                <h1 class="display-4 fw-bold" data-i18n="hero-title">ភាពស្រស់ស្រាយពីកសិដ្ឋានរបស់យើងទៅផ្ទះរបស់អ្នក</h1>
-                <p class="lead mt-3" data-i18n="hero-subtitle">ផ្លែឈើ និងផលិតផលកសិកម្មដែលមានគុណភាពខ្ពស់ពីប្រទេសកម្ពុជា។</p>
-                <a href="#products" class="btn btn-success btn-lg mt-4" data-i18n="hero-button">ស្វែងយល់ពីផលិតផលរបស់យើង <i class="bi bi-arrow-right-circle-fill"></i></a>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10 text-center hero-content">
+                        <h1 data-i18n="hero-title">ភាពស្រស់ស្រាយពីកសិដ្ឋានរបស់យើងទៅផ្ទះរបស់អ្នក</h1>
+                        <p data-i18n="hero-subtitle">ផ្លែឈើ និងផលិតផលកសិកម្មដែលមានគុណភាពខ្ពស់ពីប្រទេសកម្ពុជា។</p>
+                        <a href="#products" class="hero-btn" data-i18n="hero-button">
+                            ស្វែងយល់ពីផលិតផលរបស់យើង
+                            <i class="bi bi-arrow-right-circle-fill"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
-
         <!-- Products Section -->
-        <section id="products" class="py-5">
+        <section id="products" class="section">
             <div class="container">
-                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="products-title">ផលិតផលរបស់យើង</h2>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
-                    <div class="col">
+                <h2 class="section-title" data-i18n="products-title">ផលិតផលរបស់យើង</h2>
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-3 col-md-6 fade-in">
                         <div class="card product-card h-100">
                             <img src="p1.jpg" class="card-img-top" alt="Dried Longan Pulp">
                             <div class="card-body text-center">
@@ -267,7 +613,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-3 col-md-6 fade-in">
                         <div class="card product-card h-100">
                             <img src="p2.jpg" class="card-img-top" alt="Fresh Longan Meat">
                             <div class="card-body text-center">
@@ -277,7 +623,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-3 col-md-6 fade-in">
                         <div class="card product-card h-100">
                             <img src="p4.jpg" class="card-img-top" alt="Longan Fruit">
                             <div class="card-body text-center">
@@ -287,7 +633,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-3 col-md-6 fade-in">
                         <div class="card product-card h-100">
                             <img src="p6.jpg" class="card-img-top" alt="Durian Fruit">
                             <div class="card-body text-center">
@@ -298,118 +644,137 @@
                         </div>
                     </div>
                 </div>
-                
-                <!-- Product Gallery as a Grid -->
+                <!-- Gallery -->
                 <div class="row g-4 justify-content-center">
                     <div class="col-12 text-center mb-4">
-                        <h3 class="fw-bold" data-i18n="gallery-title">រូបភាពកសិដ្ឋានរបស់យើង</h3>
+                        <h3 class="section-title" style="font-size: 2.5rem;" data-i18n="gallery-title">រូបភាពកសិដ្ឋានរបស់យើង</h3>
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="p3.jpg" alt="Packed Longan" class="img-fluid rounded shadow-sm">
+                        <img src="p3.jpg" alt="Packed Longan" class="img-fluid">
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="p10.jpg" alt="Peeled Longan" class="img-fluid rounded shadow-sm">
+                        <img src="p10.jpg" alt="Peeled Longan" class="img-fluid">
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="p13.jpg" alt="Longan on tree" class="img-fluid rounded shadow-sm">
+                        <img src="p13.jpg" alt="Longan on tree" class="img-fluid">
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="https://mexcamb.wordpress.com/wp-content/uploads/2010/11/durain11.jpg" alt="Durian Field" class="img-fluid rounded shadow-sm">
+                        <img src="https://mexcamb.wordpress.com/wp-content/uploads/2010/11/durain11.jpg" alt="Durian Field" class="img-fluid">
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="https://thumbs.dreamstime.com/b/longan-dimocarpus-longan-fruit-asia-same-family-lychee-97791589.jpg" alt="Harvesting" class="img-fluid rounded shadow-sm">
+                        <img src="https://thumbs.dreamstime.com/b/longan-dimocarpus-longan-fruit-asia-same-family-lychee-97791589.jpg" alt="Harvesting" class="img-fluid">
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
-                        <img src="https://i.ebayimg.com/images/g/s8cAAOSwZ19ezh53/s-l1200.jpg" alt="Quality Check" class="img-fluid rounded shadow-sm">
+                        <img src="https://i.ebayimg.com/images/g/s8cAAOSwZ19ezh53/s-l1200.jpg" alt="Quality Check" class="img-fluid">
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- About Section -->
-        <section id="about" class="py-5 bg-white">
-            <div class="container text-center">
-                <h2 class="display-5 fw-bold mb-4" data-i18n="about-title">អំពីពួកយើង</h2>
-                <div class="mx-auto" style="max-width: 800px;">
-                    <img src="p8.jpg" alt="Company Banner" class="img-fluid rounded shadow-sm mb-4">
-                    <p class="lead" data-i18n="about-text1">ក្រុមហ៊ុន YGH & VN AGRIC (CAMBODIA) CO., LTD. ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់នូវផ្លែឈើដែលមានគុណភាពខ្ពស់ និងស្រស់បំផុតពីកសិដ្ឋានកម្ពុជារបស់យើងទៅកាន់អតិថិជនជុំវិញពិភពលោក។</p>
-                    <p data-i18n="about-text2">ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។</p>
-                    <h3 class="fw-bold mt-5 mb-3" data-i18n="cultivation-title">ដំណើរការដាំដុះ</h3>
-                    <p data-i18n="cultivation-text1">យើងប្រើប្រាស់វិធីសាស្រ្តកសិកម្មបែបទំនើប និងធម្មជាតិដើម្បីធានាគុណភាពល្អបំផុត។</p>
-                    <p data-i18n="cultivation-text2">ចាប់ពីការជ្រើសរើសពូជល្អ ការថែទាំដី ការស្រោចស្រព និងការប្រមូលផល គ្រប់ជំហានសុទ្ធតែទទួលបានការយកចិត្តទុកដាក់ខ្ពស់។</p>
+        <section id="about" class="section about-section">
+            <div class="container about-content">
+                <h2 class="section-title" data-i18n="about-title">អំពីពួកយើង</h2>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="p8.jpg" alt="Company Banner" class="img-fluid about-image">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="ps-lg-4">
+                            <p class="lead mb-4" data-i18n="about-text1">ក្រុមហ៊ុន YGH & VN AGRIC (CAMBODIA) CO., LTD. ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់នូវផ្លែឈើដែលមានគុណភាពខ្ពស់ និងស្រស់បំផុតពីកសិដ្ឋានកម្ពុជារបស់យើងទៅកាន់អតិថិជនជុំវិញពិភពលោក។</p>
+                            <p class="lead mb-4" data-i18n="about-text-new">ខាងយើង ផ្ដោតលើការនាំចេញ ផ្លែមៀនស្រស់និង ផ្លែធុរេន មាន ទាំងស្រស់និងកែឆ្នៃ</p>
+                            <p class="mb-4" data-i18n="about-text2">ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។</p>
+                            <div class="mt-5">
+                                <h4 class="fw-bold mb-3" style="color: var(--primary-color);" data-i18n="cultivation-title">ដំណើរការដាំដុះ</h4>
+                                <p class="mb-3" data-i18n="cultivation-text1">យើងប្រើប្រាស់វិធីសាស្រ្តកសិកម្មបែបទំនើប និងធម្មជាតិដើម្បីធានាគុណភាពល្អបំផុត។</p>
+                                <p data-i18n="cultivation-text2">ចាប់ពីការជ្រើសរើសពូជល្អ ការថែទាំដី ការស្រោចស្រព និងការប្រមូលផល គ្រប់ជំហានសុទ្ធតែទទួលបានការយកចិត្តទុកដាក់ខ្ពស់។</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-
         <!-- Customer Testimonials Section -->
-        <section id="testimonials" class="py-5 bg-light">
+        <section id="testimonials" class="section">
             <div class="container">
-                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="testimonials-title">មតិរបស់អតិថិជន</h2>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="testimonial-card">
-                            <p data-i18n="testimonial1-text">"ផ្លែមៀនស្រស់ និងផ្អែមខ្លាំង! ខ្ញុំពិតជាពេញចិត្តនឹងគុណភាព និងសេវាកម្ម។ ខ្ញុំនឹងបន្តជាវនៅទីនេះ!"</p>
-                            <footer>— <span data-i18n="testimonial1-name">លោក សុវណ្ណារ៉ា</span></footer>
+                <h2 class="section-title" data-i18n="testimonials-title">មតិរបស់អតិថិជន</h2>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="testimonial-card h-100">
+                            <p class="mb-4" data-i18n="testimonial1-text">"ផ្លែមៀនស្រស់ និងផ្អែមខ្លាំង! ខ្ញុំពិតជាពេញចិត្តនឹងគុណភាព និងសេវាកម្ម។ ខ្ញុំនឹងបន្តជាវនៅទីនេះ!"</p>
+                            <footer class="text-end">— <span data-i18n="testimonial1-name">លោក សុវណ្ណារ៉ា</span></footer>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="testimonial-card">
-                            <p data-i18n="testimonial2-text">"ធូរេនរបស់ក្រុមហ៊ុន YGH គឺឆ្ងាញ់ណាស់។ វាមានក្លិនឈ្ងុយ និងសាច់ក្រាស់ល្អ។"</p>
-                            <footer>— <span data-i18n="testimonial2-name">អ្នកស្រី ដាវីន</span></footer>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="testimonial-card h-100">
+                            <p class="mb-4" data-i18n="testimonial2-text">"ធូរេនរបស់ក្រុមហ៊ុន YGH គឺឆ្ងាញ់ណាស់។ វាមានក្លិនឈ្ងុយ និងសាច់ក្រាស់ល្អ។"</p>
+                            <footer class="text-end">— <span data-i18n="testimonial2-name">អ្នកស្រី ដាវីន</span></footer>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
         <!-- Contact Section -->
-        <section id="contact" class="py-5 bg-white">
-            <div class="container">
-                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="contact-title">ទំនាក់ទំនងពួកយើង</h2>
+        <section id="contact" class="section contact-section">
+            <div class="container contact-content">
+                <h2 class="section-title text-white" data-i18n="contact-title">ទំនាក់ទំនងពួកយើង</h2>
                 <div class="row justify-content-center align-items-center">
-                    <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start">
-                        <ul class="list-unstyled">
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-telephone-fill contact-info-icon me-3"></i>
-                                <p class="mb-0" data-i18n="contact-phone-label"><strong>លេខទូរស័ព្ទ:</strong> +855 96 338 8839</p>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-envelope-fill contact-info-icon me-3"></i>
-                                <p class="mb-0" data-i18n="contact-email-label"><strong>អ៊ីមែល:</strong> yutpin2020@gmail.com</p>
-                            </li>
-                            <li class="social-icons-list mb-3">
-                                <a href="https://t.me/yutpin" target="_blank" class="text-decoration-none text-dark">
-                                    <i class="bi bi-telegram contact-info-icon"></i>
-                                </a>
-                                <a href="https://www.facebook.com/share/1FcYp5tKwG/" target="_blank" class="text-decoration-none text-dark">
-                                    <i class="bi bi-facebook contact-info-icon"></i>
-                                </a>
-                            </li>
-                            <li class="d-flex align-items-center mb-3">
-                                <i class="bi bi-geo-alt-fill contact-info-icon me-3"></i>
-                                <p class="mb-0" data-i18n="contact-address-label"><strong>អាសយដ្ឋាន:</strong> ភូមិសួនអំពិលលិច សង្កាត់ប៉ៃលិន ក្រុងប៉ៃលិន ខេត្តប៉ៃលិន</p>
-                            </li>
-                        </ul>
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-telephone-fill contact-info-icon me-4"></i>
+                                    <div>
+                                        <h5 class="text-white mb-1" data-i18n="contact-phone-label">លេខទូរស័ព្ទ:</h5>
+                                        <p class="mb-0 fs-5">+855 96 338 8839</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-envelope-fill contact-info-icon me-4"></i>
+                                    <div>
+                                        <h5 class="text-white mb-1" data-i18n="contact-email-label">អ៊ីមែល:</h5>
+                                        <p class="mb-0 fs-5">yutpin2020@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-geo-alt-fill contact-info-icon me-4"></i>
+                                    <div>
+                                        <h5 class="text-white mb-1" data-i18n="contact-address-label">អាសយដ្ឋាន:</h5>
+                                        <p class="mb-0">ភូមិសួនអំពិលលិច សង្កាត់ប៉ៃលិន ក្រុងប៉ៃលិន ខេត្តប៉ៃលិន</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="social-icons-list justify-content-start">
+                                    <a href="https://t.me/yutpin" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-telegram contact-info-icon"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/share/1FcYp5tKwG/" target="_blank" class="text-decoration-none">
+                                        <i class="bi bi-facebook contact-info-icon"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <h3 class="fw-bold mb-3" data-i18n="contact-payment">ទូទាត់តាម ABA</h3>
+                        <h3 class="text-white fw-bold mb-4" data-i18n="contact-payment">ទូទាត់តាម ABA</h3>
                         <img src="aba2.jpg" alt="ABA QR Code" class="img-fluid qr-code">
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
     <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-4 footer">
+    <footer class="footer">
         <div class="container">
             <p class="mb-0" data-i18n="footer-text">&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
         </div>
     </footer>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
     <!-- Language Switcher Script -->
     <script>
         const translations = {
@@ -420,6 +785,7 @@
                 "nav-testimonials": "Testimonials",
                 "nav-contact": "Contact",
                 "nav-catalog": "Download Catalog",
+                "language-dropdown-button": "Language",
                 "hero-title": "Freshness from our farm to your home",
                 "hero-subtitle": "High-quality fruits and agricultural products from Cambodia.",
                 "hero-button": "Explore Our Products",
@@ -435,6 +801,7 @@
                 "gallery-title": "Our Farm Gallery",
                 "about-title": "About Us",
                 "about-text1": "YGH & VN AGRIC (CAMBODIA) CO., LTD. is dedicated to providing the freshest and highest quality fruits from our Cambodian farms to customers around the world.",
+                "about-text-new": "We focus on exporting fresh longan and durian fruits, available both fresh and processed.",
                 "about-text2": "Our commitment to sustainable farming practices ensures that every product is not only delicious but also grown with care for the environment. We specialize in longan and durian, bringing the unique and vibrant flavors of our region to your table.",
                 "cultivation-title": "Our Cultivation Process",
                 "cultivation-text1": "We use modern and organic farming methods to ensure the best quality.",
@@ -459,6 +826,7 @@
                 "nav-testimonials": "មតិអតិថិជន",
                 "nav-contact": "ទំនាក់ទំនង",
                 "nav-catalog": "ទាញយក Catalog",
+                "language-dropdown-button": "ភាសា",
                 "hero-title": "ភាពស្រស់ស្រាយពីកសិដ្ឋានរបស់យើងទៅផ្ទះរបស់អ្នក",
                 "hero-subtitle": "ផ្លែឈើ និងផលិតផលកសិកម្មដែលមានគុណភាពខ្ពស់ពីប្រទេសកម្ពុជា។",
                 "hero-button": "ស្វែងយល់ពីផលិតផលរបស់យើង",
@@ -474,7 +842,8 @@
                 "gallery-title": "រូបភាពកសិដ្ឋានរបស់យើង",
                 "about-title": "អំពីពួកយើង",
                 "about-text1": "ក្រុមហ៊ុន YGH & VN AGRIC (CAMBODIA) CO., LTD. ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់នូវផ្លែឈើដែលមានគុណភាពខ្ពស់ និងស្រស់បំផុតពីកសិដ្ឋានកម្ពុជារបស់យើងទៅកាន់អតិថិជនជុំវិញពិភពលោក។",
-                "about-text2": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។",
+                "about-text-new": "ខាងយើង ផ្ដោតលើការនាំចេញ ផ្លែមៀនស្រស់និង ផ្លែធុរេន មាន ទាំងស្រស់និងកែឆ្នៃ",
+                "about-text2": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឈ្ងុយឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។",
                 "cultivation-title": "ដំណើរការដាំដុះ",
                 "cultivation-text1": "យើងប្រើប្រាស់វិធីសាស្រ្តកសិកម្មបែបទំនើប និងធម្មជាតិដើម្បីធានាគុណភាពល្អបំផុត។",
                 "cultivation-text2": "ចាប់ពីការជ្រើសរើសពូជល្អ ការថែទាំដី ការស្រោចស្រព និងការប្រមូលផល គ្រប់ជំហានសុទ្ធតែទទួលបានការយកចិត្តទុកដាក់ខ្ពស់។",
@@ -498,6 +867,7 @@
                 "nav-testimonials": "客户评价",
                 "nav-contact": "联系我们",
                 "nav-catalog": "下载目录",
+                "language-dropdown-button": "语言",
                 "hero-title": "从我们的农场到您的家，新鲜直达",
                 "hero-subtitle": "来自柬埔寨的高品质水果和农产品。",
                 "hero-button": "探索我们的产品",
@@ -513,6 +883,7 @@
                 "gallery-title": "我们的农场画廊",
                 "about-title": "关于我们",
                 "about-text1": "YGH & VN AGRIC (CAMBODIA) CO., LTD. 致力于将来自我们柬埔寨农场最新鲜、最高品质的水果，提供给世界各地的客户。",
+                "about-text-new": "我们专注于出口新鲜龙眼和榴莲，提供新鲜和加工产品。",
                 "about-text2": "我们秉持可持续农业实践的承诺，确保每一件产品不仅美味，而且是在对环境友好的情况下种植的。我们专注于龙眼和榴莲，将我们地区独特而充满活力的风味带到您的餐桌。",
                 "cultivation-title": "我们的种植过程",
                 "cultivation-text1": "我们采用现代化和有机农业方法，以确保最佳品质。",
@@ -532,21 +903,28 @@
             }
         };
 
+        // This function switches the language of the page content
         function switchLanguage(lang) {
             const elements = document.querySelectorAll('[data-i18n]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang] && translations[lang][key]) {
-                    if (element.tagName === 'A' && element.hasAttribute('download')) {
-                        const text = translations[lang][key];
-                        element.innerHTML = text;
-                    } else if (element.tagName !== 'H5') { // Do not translate the H5 product titles
+                    // Special case for product titles which have multiple languages
+                    if (element.classList.contains('card-title')) {
+                        // Don't translate the multilingual product titles
+                        return;
+                    }
+
+                    // For the language dropdown button, we need to update its text
+                    if (element.id === 'language-dropdown-button') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        // For all other elements, update the innerHTML
                         element.innerHTML = translations[lang][key];
                     }
                 }
             });
-
-            // Set the language attribute of the HTML tag
+            // Set the language attribute of the HTML tag for accessibility and styling
             document.documentElement.lang = lang;
         }
 
