@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="km">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,7 +45,7 @@
         /* Hero Section */
         .hero-section {
             background: linear-gradient(rgba(170, 92, 92, 0.6), rgba(0, 0, 0, 0.6)), url('p11.jpg') no-repeat center center/cover;
-            height: 80vh; /* Increased height for better impact */
+            height: 80vh;
             color: rgb(248, 236, 236);
             display: flex;
             align-items: center;
@@ -76,7 +76,7 @@
         /* Product Cards */
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 1.5rem; /* More rounded corners */
+            border-radius: 1.5rem;
             overflow: hidden;
             border: none;
             box-shadow: 0 4px 15px rgba(111, 45, 45, 0.1);
@@ -86,7 +86,7 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
         }
         .product-card img {
-            height: 250px; /* Adjusted image height */
+            height: 250px;
             object-fit: cover;
             width: 100%;
         }
@@ -97,16 +97,53 @@
             font-weight: 700;
             color: dark;
         }
+        
+        .order-button {
+            background-color: var(--success-color);
+            border-color: var(--success-color);
+            color: white;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .order-button:hover {
+            background-color: #35bf53;
+            transform: translateY(-2px);
+            color: white;
+        }
 
         /* Gallery */
         .gallery-item {
             border-radius: 1rem;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         .gallery-item:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Testimonials Section */
+        .testimonial-card {
+            background-color: #fff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        .testimonial-card p {
+            font-style: italic;
+        }
+        .testimonial-card footer {
+            font-weight: bold;
+            color: var(--primary-color);
         }
 
         /* Contact Section */
@@ -128,11 +165,14 @@
         .social-icons-list {
             display: flex;
             gap: 1.5rem;
-            justify-content: center; /* Centered icons for better layout on all devices */
+            justify-content: center;
             padding-left: 0;
             list-style: none;
         }
-
+        .language-selector-dropdown {
+            margin-right: 15px;
+        }
+        
         /* Footer */
         .footer {
             background-color: var(--dark-color);
@@ -169,18 +209,35 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#home" data-i18n="nav-home">ទំព័រដើម</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#products">Products</a>
+                        <a class="nav-link" href="#products" data-i18n="nav-products">ផលិតផល</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">About Us</a>
+                        <a class="nav-link" href="#about" data-i18n="nav-about">អំពីពួកយើង</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <a class="nav-link" href="#testimonials" data-i18n="nav-testimonials">មតិអតិថិជន</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" data-i18n="nav-contact">ទំនាក់ទំនង</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.pdf" download data-i18n="nav-catalog">ទាញយក Catalog</a>
                     </li>
                 </ul>
+                <!-- Language Selector Dropdown -->
+                <div class="dropdown language-selector-dropdown">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="language-dropdown">
+                        ភាសា
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="language-dropdown">
+                        <li><a class="dropdown-item" href="#" data-lang="en">English</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="km">ភាសាខ្មែរ</a></li>
+                        <li><a class="dropdown-item" href="#" data-lang="zh">中文</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -189,23 +246,24 @@
         <!-- Hero Section -->
         <section id="home" class="hero-section d-flex align-items-center">
             <div class="container">
-                <h1 class="display-4 fw-bold">Freshness from our farm to your home</h1>
-                <p class="lead mt-3">High-quality fruits and agricultural products from Cambodia.</p>
-                <a href="#products" class="btn btn-success btn-lg mt-4">Explore Our Products <i class="bi bi-arrow-right-circle-fill"></i></a>
+                <h1 class="display-4 fw-bold" data-i18n="hero-title">ភាពស្រស់ស្រាយពីកសិដ្ឋានរបស់យើងទៅផ្ទះរបស់អ្នក</h1>
+                <p class="lead mt-3" data-i18n="hero-subtitle">ផ្លែឈើ និងផលិតផលកសិកម្មដែលមានគុណភាពខ្ពស់ពីប្រទេសកម្ពុជា។</p>
+                <a href="#products" class="btn btn-success btn-lg mt-4" data-i18n="hero-button">ស្វែងយល់ពីផលិតផលរបស់យើង <i class="bi bi-arrow-right-circle-fill"></i></a>
             </div>
         </section>
 
         <!-- Products Section -->
         <section id="products" class="py-5">
             <div class="container">
-                <h2 class="text-center mb-5 display-5 fw-bold">Our Products</h2>
+                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="products-title">ផលិតផលរបស់យើង</h2>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mb-5">
                     <div class="col">
                         <div class="card product-card h-100">
                             <img src="p1.jpg" class="card-img-top" alt="Dried Longan Pulp">
                             <div class="card-body text-center">
-                                <h5 class="card-title">សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp</h5>
-                                <p class="card-text text-muted">Enjoy the sweet and chewy taste of our naturally dried longan pulp.</p>
+                                <h5 class="card-title" data-i18n="product1-title">សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp</h5>
+                                <p class="card-text text-muted" data-i18n="product1-text">រីករាយជាមួយនឹងរសជាតិផ្អែម និងទំពារនៃសាច់មៀនសម្ងួតធម្មជាតិរបស់យើង។</p>
+                                <a href="https://t.me/yutpin" class="order-button mt-3" target="_blank" data-i18n="order-button">បញ្ជាទិញ</a>
                             </div>
                         </div>
                     </div>
@@ -213,8 +271,9 @@
                         <div class="card product-card h-100">
                             <img src="p2.jpg" class="card-img-top" alt="Fresh Longan Meat">
                             <div class="card-body text-center">
-                                <h5 class="card-title">សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat</h5>
-                                <p class="card-text text-muted">The delicious and juicy meat of our fresh longan, perfect for snacks or desserts.</p>
+                                <h5 class="card-title" data-i18n="product2-title">សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat</h5>
+                                <p class="card-text text-muted" data-i18n="product2-text">សាច់មៀនស្រស់ដែលមានរសជាតិឆ្ងាញ់ និងជូរចត់ ល្អឥតខ្ចោះសម្រាប់អាហារសម្រន់ ឬបង្អែម។</p>
+                                <a href="https://t.me/yutpin" class="order-button mt-3" target="_blank" data-i18n="order-button">បញ្ជាទិញ</a>
                             </div>
                         </div>
                     </div>
@@ -222,8 +281,9 @@
                         <div class="card product-card h-100">
                             <img src="p4.jpg" class="card-img-top" alt="Longan Fruit">
                             <div class="card-body text-center">
-                                <h5 class="card-title">ផ្លែមៀន 龙眼果 Longan</h5>
-                                <p class="card-text text-muted">Harvested at peak ripeness, our longan fruit is known for its sweet and aromatic flavor.</p>
+                                <h5 class="card-title" data-i18n="product3-title">ផ្លែមៀន 龙眼果 Longan</h5>
+                                <p class="card-text text-muted" data-i18n="product3-text">ប្រមូលផលនៅពេលទុំបំផុត ផ្លែមៀនរបស់យើងត្រូវបានគេស្គាល់ថាមានរសជាតិផ្អែម និងក្រអូប។</p>
+                                <a href="https://t.me/yutpin" class="order-button mt-3" target="_blank" data-i18n="order-button">បញ្ជាទិញ</a>
                             </div>
                         </div>
                     </div>
@@ -231,15 +291,18 @@
                         <div class="card product-card h-100">
                             <img src="p6.jpg" class="card-img-top" alt="Durian Fruit">
                             <div class="card-body text-center">
-                                <h5 class="card-title">ផ្លែធុរេន Durian fruit 榴莲</h5>
-                                <p class="card-text text-muted">Experience the unique and rich flavor of the "King of Fruits" from our farms.</p>
+                                <h5 class="card-title" data-i18n="product4-title">ផ្លែធុរេន Durian fruit 榴莲</h5>
+                                <p class="card-text text-muted" data-i18n="product4-text">រីករាយជាមួយនឹងរសជាតិប្លែក និងសម្បូរបែបនៃ "ស្តេចផ្លែឈើ" ពីកសិដ្ឋានរបស់យើង។</p>
+                                <a href="https://t.me/yutpin" class="order-button mt-3" target="_blank" data-i18n="order-button">បញ្ជាទិញ</a>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+                <!-- Product Gallery as a Grid -->
                 <div class="row g-4 justify-content-center">
                     <div class="col-12 text-center mb-4">
-                        <h3 class="fw-bold">Our Farm Gallery</h3>
+                        <h3 class="fw-bold" data-i18n="gallery-title">រូបភាពកសិដ្ឋានរបស់យើង</h3>
                     </div>
                     <div class="col-md-4 col-sm-6 gallery-item">
                         <img src="p3.jpg" alt="Packed Longan" class="img-fluid rounded shadow-sm">
@@ -250,6 +313,15 @@
                     <div class="col-md-4 col-sm-6 gallery-item">
                         <img src="p13.jpg" alt="Longan on tree" class="img-fluid rounded shadow-sm">
                     </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="https://mexcamb.wordpress.com/wp-content/uploads/2010/11/durain11.jpg" alt="Durian Field" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="https://thumbs.dreamstime.com/b/longan-dimocarpus-longan-fruit-asia-same-family-lychee-97791589.jpg" alt="Harvesting" class="img-fluid rounded shadow-sm">
+                    </div>
+                    <div class="col-md-4 col-sm-6 gallery-item">
+                        <img src="https://i.ebayimg.com/images/g/s8cAAOSwZ19ezh53/s-l1200.jpg" alt="Quality Check" class="img-fluid rounded shadow-sm">
+                    </div>
                 </div>
             </div>
         </section>
@@ -257,29 +329,53 @@
         <!-- About Section -->
         <section id="about" class="py-5 bg-white">
             <div class="container text-center">
-                <h2 class="display-5 fw-bold mb-4">About Us</h2>
+                <h2 class="display-5 fw-bold mb-4" data-i18n="about-title">អំពីពួកយើង</h2>
                 <div class="mx-auto" style="max-width: 800px;">
                     <img src="p8.jpg" alt="Company Banner" class="img-fluid rounded shadow-sm mb-4">
-                    <p class="lead">YGH & VN AGRIC (CAMBODIA) CO., LTD. is dedicated to providing the freshest and highest quality fruits from our Cambodian farms to customers around the world.</p>
-                    <p>Our commitment to sustainable farming practices ensures that every product is not only delicious but also grown with care for the environment. We specialize in longan and durian, bringing the unique and vibrant flavors of our region to your table.</p>
+                    <p class="lead" data-i18n="about-text1">ក្រុមហ៊ុន YGH & VN AGRIC (CAMBODIA) CO., LTD. ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់នូវផ្លែឈើដែលមានគុណភាពខ្ពស់ និងស្រស់បំផុតពីកសិដ្ឋានកម្ពុជារបស់យើងទៅកាន់អតិថិជនជុំវិញពិភពលោក។</p>
+                    <p data-i18n="about-text2">ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។</p>
+                    <h3 class="fw-bold mt-5 mb-3" data-i18n="cultivation-title">ដំណើរការដាំដុះ</h3>
+                    <p data-i18n="cultivation-text1">យើងប្រើប្រាស់វិធីសាស្រ្តកសិកម្មបែបទំនើប និងធម្មជាតិដើម្បីធានាគុណភាពល្អបំផុត។</p>
+                    <p data-i18n="cultivation-text2">ចាប់ពីការជ្រើសរើសពូជល្អ ការថែទាំដី ការស្រោចស្រព និងការប្រមូលផល គ្រប់ជំហានសុទ្ធតែទទួលបានការយកចិត្តទុកដាក់ខ្ពស់។</p>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-5 bg-light">
+        <!-- Customer Testimonials Section -->
+        <section id="testimonials" class="py-5 bg-light">
             <div class="container">
-                <h2 class="text-center mb-5 display-5 fw-bold">Contact Us</h2>
+                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="testimonials-title">មតិរបស់អតិថិជន</h2>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="testimonial-card">
+                            <p data-i18n="testimonial1-text">"ផ្លែមៀនស្រស់ និងផ្អែមខ្លាំង! ខ្ញុំពិតជាពេញចិត្តនឹងគុណភាព និងសេវាកម្ម។ ខ្ញុំនឹងបន្តជាវនៅទីនេះ!"</p>
+                            <footer>— <span data-i18n="testimonial1-name">លោក សុវណ្ណារ៉ា</span></footer>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="testimonial-card">
+                            <p data-i18n="testimonial2-text">"ធូរេនរបស់ក្រុមហ៊ុន YGH គឺឆ្ងាញ់ណាស់។ វាមានក្លិនឈ្ងុយ និងសាច់ក្រាស់ល្អ។"</p>
+                            <footer>— <span data-i18n="testimonial2-name">អ្នកស្រី ដាវីន</span></footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-5 bg-white">
+            <div class="container">
+                <h2 class="text-center mb-5 display-5 fw-bold" data-i18n="contact-title">ទំនាក់ទំនងពួកយើង</h2>
                 <div class="row justify-content-center align-items-center">
                     <div class="col-lg-6 mb-4 mb-lg-0 text-center text-lg-start">
                         <ul class="list-unstyled">
                             <li class="d-flex align-items-center mb-3">
                                 <i class="bi bi-telephone-fill contact-info-icon me-3"></i>
-                                <p class="mb-0"><strong>Phone:</strong> +855 96 338 8839</p>
+                                <p class="mb-0" data-i18n="contact-phone-label"><strong>លេខទូរស័ព្ទ:</strong> +855 96 338 8839</p>
                             </li>
                             <li class="d-flex align-items-center mb-3">
                                 <i class="bi bi-envelope-fill contact-info-icon me-3"></i>
-                                <p class="mb-0"><strong>Email:</strong> yutpin2020@gmail.com</p>
+                                <p class="mb-0" data-i18n="contact-email-label"><strong>អ៊ីមែល:</strong> yutpin2020@gmail.com</p>
                             </li>
                             <li class="social-icons-list mb-3">
                                 <a href="https://t.me/yutpin" target="_blank" class="text-decoration-none text-dark">
@@ -291,12 +387,12 @@
                             </li>
                             <li class="d-flex align-items-center mb-3">
                                 <i class="bi bi-geo-alt-fill contact-info-icon me-3"></i>
-                                <p class="mb-0"><strong>Address:</strong> Suon Ampov Lech Village, Sangkat Pailin, Pailin City, Pailin Province, Cambodia</p>
+                                <p class="mb-0" data-i18n="contact-address-label"><strong>អាសយដ្ឋាន:</strong> ភូមិសួនអំពិលលិច សង្កាត់ប៉ៃលិន ក្រុងប៉ៃលិន ខេត្តប៉ៃលិន</p>
                             </li>
                         </ul>
                     </div>
                     <div class="col-lg-4 text-center">
-                        <h3 class="fw-bold mb-3">Payment via ABA</h3>
+                        <h3 class="fw-bold mb-3" data-i18n="contact-payment">ទូទាត់តាម ABA</h3>
                         <img src="aba2.jpg" alt="ABA QR Code" class="img-fluid qr-code">
                     </div>
                 </div>
@@ -307,11 +403,166 @@
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-4 footer">
         <div class="container">
-            <p class="mb-0">&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. All Rights Reserved.</p>
+            <p class="mb-0" data-i18n="footer-text">&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Language Switcher Script -->
+    <script>
+        const translations = {
+            en: {
+                "nav-home": "Home",
+                "nav-products": "Products",
+                "nav-about": "About Us",
+                "nav-testimonials": "Testimonials",
+                "nav-contact": "Contact",
+                "nav-catalog": "Download Catalog",
+                "hero-title": "Freshness from our farm to your home",
+                "hero-subtitle": "High-quality fruits and agricultural products from Cambodia.",
+                "hero-button": "Explore Our Products",
+                "products-title": "Our Products",
+                "product1-title": "សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp",
+                "product1-text": "Enjoy the sweet and chewy taste of our naturally dried longan pulp.",
+                "product2-title": "សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat",
+                "product2-text": "The delicious and juicy meat of our fresh longan, perfect for snacks or desserts.",
+                "product3-title": "ផ្លែមៀន 龙眼果 Longan",
+                "product3-text": "Harvested at peak ripeness, our longan fruit is known for its sweet and aromatic flavor.",
+                "product4-title": "ផ្លែធុរេន Durian fruit 榴莲",
+                "product4-text": "Experience the unique and rich flavor of the \"King of Fruits\" from our farms.",
+                "gallery-title": "Our Farm Gallery",
+                "about-title": "About Us",
+                "about-text1": "YGH & VN AGRIC (CAMBODIA) CO., LTD. is dedicated to providing the freshest and highest quality fruits from our Cambodian farms to customers around the world.",
+                "about-text2": "Our commitment to sustainable farming practices ensures that every product is not only delicious but also grown with care for the environment. We specialize in longan and durian, bringing the unique and vibrant flavors of our region to your table.",
+                "cultivation-title": "Our Cultivation Process",
+                "cultivation-text1": "We use modern and organic farming methods to ensure the best quality.",
+                "cultivation-text2": "From selecting the best seeds to soil care, irrigation, and harvesting, every step is given high attention.",
+                "testimonials-title": "Customer Testimonials",
+                "testimonial1-text": "\"The longan is fresh and very sweet! I'm really satisfied with the quality and service. I will continue to be a customer!\"",
+                "testimonial1-name": "Mr. Sovannara",
+                "testimonial2-text": "\"YGH's durian is delicious. It has a great aroma and thick, creamy flesh.\"",
+                "testimonial2-name": "Mrs. Davin",
+                "contact-title": "Contact Us",
+                "contact-phone-label": "Phone:",
+                "contact-email-label": "Email:",
+                "contact-address-label": "Address:",
+                "contact-payment": "Pay with ABA",
+                "footer-text": "&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. All Rights Reserved.",
+                "order-button": "Order"
+            },
+            km: {
+                "nav-home": "ទំព័រដើម",
+                "nav-products": "ផលិតផល",
+                "nav-about": "អំពីពួកយើង",
+                "nav-testimonials": "មតិអតិថិជន",
+                "nav-contact": "ទំនាក់ទំនង",
+                "nav-catalog": "ទាញយក Catalog",
+                "hero-title": "ភាពស្រស់ស្រាយពីកសិដ្ឋានរបស់យើងទៅផ្ទះរបស់អ្នក",
+                "hero-subtitle": "ផ្លែឈើ និងផលិតផលកសិកម្មដែលមានគុណភាពខ្ពស់ពីប្រទេសកម្ពុជា។",
+                "hero-button": "ស្វែងយល់ពីផលិតផលរបស់យើង",
+                "products-title": "ផលិតផលរបស់យើង",
+                "product1-title": "សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp",
+                "product1-text": "រីករាយជាមួយនឹងរសជាតិផ្អែម និងទំពារនៃសាច់មៀនសម្ងួតធម្មជាតិរបស់យើង។",
+                "product2-title": "សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat",
+                "product2-text": "សាច់មៀនស្រស់ដែលមានរសជាតិឆ្ងាញ់ និងជូរចត់ ល្អឥតខ្ចោះសម្រាប់អាហារសម្រន់ ឬបង្អែម។",
+                "product3-title": "ផ្លែមៀន 龙眼果 Longan",
+                "product3-text": "ប្រមូលផលនៅពេលទុំបំផុត ផ្លែមៀនរបស់យើងត្រូវបានគេស្គាល់ថាមានរសជាតិផ្អែម និងក្រអូប។",
+                "product4-title": "ផ្លែធុរេន Durian fruit 榴莲",
+                "product4-text": "រីករាយជាមួយនឹងរសជាតិប្លែក និងសម្បូរបែបនៃ \"ស្តេចផ្លែឈើ\" ពីកសិដ្ឋានរបស់យើង។",
+                "gallery-title": "រូបភាពកសិដ្ឋានរបស់យើង",
+                "about-title": "អំពីពួកយើង",
+                "about-text1": "ក្រុមហ៊ុន YGH & VN AGRIC (CAMBODIA) CO., LTD. ត្រូវបានបង្កើតឡើងដើម្បីផ្តល់នូវផ្លែឈើដែលមានគុណភាពខ្ពស់ និងស្រស់បំផុតពីកសិដ្ឋានកម្ពុជារបស់យើងទៅកាន់អតិថិជនជុំវិញពិភពលោក។",
+                "about-text2": "ការប្តេជ្ញាចិត្តរបស់យើងចំពោះការអនុវត្តកសិកម្មប្រកបដោយនិរន្តរភាព ធានាថាផលិតផលនីមួយៗមិនត្រឹមតែមានរសជាតិឆ្ងាញ់ប៉ុណ្ណោះទេ ប៉ុន្តែថែមទាំងត្រូវបានដាំដុះដោយយកចិត្តទុកដាក់ចំពោះបរិស្ថានផងដែរ។ យើងមានជំនាញខាងមៀន និងធុរេន ដែលនាំមកនូវរសជាតិប្លែក និងរស់រវើកនៃតំបន់របស់យើងដល់តុរបស់អ្នក។",
+                "cultivation-title": "ដំណើរការដាំដុះ",
+                "cultivation-text1": "យើងប្រើប្រាស់វិធីសាស្រ្តកសិកម្មបែបទំនើប និងធម្មជាតិដើម្បីធានាគុណភាពល្អបំផុត។",
+                "cultivation-text2": "ចាប់ពីការជ្រើសរើសពូជល្អ ការថែទាំដី ការស្រោចស្រព និងការប្រមូលផល គ្រប់ជំហានសុទ្ធតែទទួលបានការយកចិត្តទុកដាក់ខ្ពស់។",
+                "testimonials-title": "មតិរបស់អតិថិជន",
+                "testimonial1-text": "\"ផ្លែមៀនស្រស់ និងផ្អែមខ្លាំង! ខ្ញុំពិតជាពេញចិត្តនឹងគុណភាព និងសេវាកម្ម។ ខ្ញុំនឹងបន្តជាវនៅទីនេះ!\"",
+                "testimonial1-name": "លោក សុវណ្ណារ៉ា",
+                "testimonial2-text": "\"ធូរេនរបស់ក្រុមហ៊ុន YGH គឺឆ្ងាញ់ណាស់។ វាមានក្លិនឈ្ងុយ និងសាច់ក្រាស់ល្អ។\"",
+                "testimonial2-name": "អ្នកស្រី ដាវីន",
+                "contact-title": "ទំនាក់ទំនងពួកយើង",
+                "contact-phone-label": "លេខទូរស័ព្ទ:",
+                "contact-email-label": "អ៊ីមែល:",
+                "contact-address-label": "អាសយដ្ឋាន:",
+                "contact-payment": "ទូទាត់តាម ABA",
+                "footer-text": "&copy; 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. រក្សាសិទ្ធិគ្រប់យ៉ាង។",
+                "order-button": "បញ្ជាទិញ"
+            },
+            zh: {
+                "nav-home": "首页",
+                "nav-products": "产品",
+                "nav-about": "关于我们",
+                "nav-testimonials": "客户评价",
+                "nav-contact": "联系我们",
+                "nav-catalog": "下载目录",
+                "hero-title": "从我们的农场到您的家，新鲜直达",
+                "hero-subtitle": "来自柬埔寨的高品质水果和农产品。",
+                "hero-button": "探索我们的产品",
+                "products-title": "我们的产品",
+                "product1-title": "សាច់មៀនសម្ងួត | 龙眼肉干 | Dried Longan Pulp",
+                "product1-text": "品尝我们天然晒干的龙眼肉干，香甜耐嚼。",
+                "product2-title": "សាច់ផ្លែមៀនស្រស់ | 新鲜龙眼肉 | Fresh Longan Meat",
+                "product2-text": "我们新鲜龙眼美味多汁的果肉，是零食或甜点的完美选择。",
+                "product3-title": "ផ្លែមៀន 龙眼果 Longan",
+                "product3-text": "我们的龙眼果在最佳成熟期采摘，以其香甜醇厚的风味而闻名。",
+                "product4-title": "ផ្លែធុរេន Durian fruit 榴莲",
+                "product4-text": "体验来自我们农场的“水果之王”独特而浓郁的风味。",
+                "gallery-title": "我们的农场画廊",
+                "about-title": "关于我们",
+                "about-text1": "YGH & VN AGRIC (CAMBODIA) CO., LTD. 致力于将来自我们柬埔寨农场最新鲜、最高品质的水果，提供给世界各地的客户。",
+                "about-text2": "我们秉持可持续农业实践的承诺，确保每一件产品不仅美味，而且是在对环境友好的情况下种植的。我们专注于龙眼和榴莲，将我们地区独特而充满活力的风味带到您的餐桌。",
+                "cultivation-title": "我们的种植过程",
+                "cultivation-text1": "我们采用现代化和有机农业方法，以确保最佳品质。",
+                "cultivation-text2": "从选择优良品种到土壤护理、灌溉和收获，每一步都受到高度关注。",
+                "testimonials-title": "客户评价",
+                "testimonial1-text": "“龙眼很新鲜，非常甜！我对质量和服务非常满意。我将继续成为这里的客户！”",
+                "testimonial1-name": "苏万纳拉先生",
+                "testimonial2-text": "“YGH的榴莲很好吃。它有浓郁的香气和厚实、奶油状的果肉。”",
+                "testimonial2-name": "达文女士",
+                "contact-title": "联系我们",
+                "contact-phone-label": "电话号码:",
+                "contact-email-label": "电子邮件:",
+                "contact-address-label": "地址:",
+                "contact-payment": "用 ABA 支付",
+                "footer-text": "© 2025 YGH & VN AGRIC (CAMBODIA) CO., LTD. 版权所有。",
+                "order-button": "订购"
+            }
+        };
+
+        function switchLanguage(lang) {
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'A' && element.hasAttribute('download')) {
+                        const text = translations[lang][key];
+                        element.innerHTML = text;
+                    } else if (element.tagName !== 'H5') { // Do not translate the H5 product titles
+                        element.innerHTML = translations[lang][key];
+                    }
+                }
+            });
+
+            // Set the language attribute of the HTML tag
+            document.documentElement.lang = lang;
+        }
+
+        // Add event listeners to the language dropdown items
+        document.querySelectorAll('[data-lang]').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+
+        // Set initial language to Khmer on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            switchLanguage('km');
+        });
+    </script>
 </body>
 </html>
